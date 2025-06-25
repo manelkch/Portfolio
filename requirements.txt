@@ -2,6 +2,10 @@ streamlit
 pandas
 numpy
 matplotlib
-plotly
 seaborn
+plotly
 scikit-learn
+geopandas
+bokeh
+nbformat
+streamlit-option-menu
