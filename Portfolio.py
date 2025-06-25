@@ -1,5 +1,5 @@
 import streamlit as st
-from plots import *
+from plots import hard_skills, education_timeline, pie_sports
 
 st.set_page_config(layout="wide")
 
