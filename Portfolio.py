@@ -1,5 +1,5 @@
 import streamlit as st
-from plots import hard_skills, education_timeline, pie_sports
+from plots import hard_skills, education_timeline, pie_sports, show_experiences_cards, soft_skills_display
 
 st.set_page_config(layout="wide")
 
@@ -17,11 +17,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 st.sidebar.image("img/bitmoji.png")
 st.sidebar.title("Manel EL KOUCH")
 
-st.sidebar.text("Second year engineering\nstudent in bioinformatics\n")
+st.sidebar.text("Engineering student in\nData Science & Bioinformatics\n")
 
 st.sidebar.markdown(
     """
@@ -42,37 +41,45 @@ st.sidebar.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown("# Welcome to my portfolio !✨")
+st.markdown("# Welcome to my portfolio! ✨")
 st.write("### Profile")
-st.write("Passionate about the mechanisms of the biological 🧬 phenomena that surround us, mathematics 📈 and programming 💻, I'm curious and eager to make a difference. I'd like to join a dynamic team where I can contribute to innovative projects combining digital technology 🌐, data analysis 📊 and healthcare 💊.")
+st.write(
+    "Curious and passionate about biology 🧬, mathematics 📈 and digital technologies 💻, "
+    "I aim to innovate in healthcare through data science and AI. I'm looking for a 12-month apprenticeship "
+    "in Data Science and/or Bioinformatics starting in September 2025."
+)
 
 st.write("### Skills")
 
+st.write("#### Programming")
+st.write("- Python, C, Java, Shell, SQL, HTML, CSS, JS, R")
+
+st.write("#### Data Science")
+st.write("- Pandas, Matplotlib, Seaborn, Plotly Express")
+st.write("- OpenCV, BeautifulSoup, Streamlit")
+st.write("- NLP, signal/image/text processing")
+
+st.write("#### Office & Tools")
+st.write("- Microsoft Office (Excel, Word, Teams...)")
+
+
+st.write("#### Languages")
+st.write("- **English** : B2 (TOEIC 895/990)")
+st.write("- **Spanish** : A1")
+
+
 hard_skills()
 
-st.write("#### Soft skills ")
-st.write("- **Project management**")
-st.write("- **Tenacity**")
-st.write("- **Autonomy**")
-st.write("- **Open-mindedness**")
+soft_skills_display()
 
 education_timeline()
 
-st.write("### Professional experiences 💼")
-st.write("- **Mc Donald's Champerret, Paris** : 2 months (Jun. - Jul. 2023)")
-st.write("- **Fnac des Ternes, Paris** : 1 months internship (Dec. 2022 - Jan. 2023)")
-st.write("- **Centre socioculturel Louise Michel, Asnières** : 1 months internship (Jun. 2022) ")
-st.write("- **Pharmacie SO OUEST, Levallois-Perret** : 1 week internship (Jan. 2018) ")
+show_experiences_cards()
 
-st.write("### Languages")
-st.write("- **English** : C1 (950/990 TOEIC)")
-st.write("- **Spanish** : A1")
+st.write("### Interests")
 
-st.write("### Interests ")
+st.write("#### Travel ✈️")
+st.write("Malaysia, Singapore, Thailand, Morocco, Spain, Italy, Belgium, United Kingdom")
 
-st.write("##### Travel ")
-st.write("🛩️ Malaysia, Singapore, Thailand, Morocco, Spain, Italy, Belgium, United Kingdom.")
-
-st.write("##### Sport ")
+st.write("#### Sport 🏋️")
 pie_sports()
-

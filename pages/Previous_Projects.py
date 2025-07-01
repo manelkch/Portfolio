@@ -2,12 +2,13 @@ import streamlit as st
 from tips_data_app import page_content_tips
 from uber_data_app1 import page_content_uber1
 from uber_data_app2 import page_content_uber2
+from Alim_Data_Project import page_content_alim_data
 
 st.set_page_config(layout="wide")
 
 page = st.sidebar.selectbox(
     "Navigation",
-    ["Home", "Tips Data Project", "Uber Data Project 1", "Uber Data Project 2"]
+    ["Home", "Tips Data Project", "Uber Data Project 1", "Uber Data Project 2", "Alim Confiance Data"]
 )
 
 
@@ -26,3 +27,7 @@ elif page == "Uber Data Project 1":
 elif page == "Uber Data Project 2":
     st.markdown("# Discover the Uber Data Project 2 ! 📍")
     page_content_uber2()
+
+elif page == "Alim Confiance Data":
+    st.markdown("# Discover the Alim Confiance Data Project ! ")
+    page_content_alim_data()

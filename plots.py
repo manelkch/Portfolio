@@ -484,43 +484,41 @@ def correlation_matrix(df):
 
 # donut chart of my hard skills
 def hard_skills():
-    skills = ["Machine Learning", "Web Development",  "Other Programming Skills"]
+    st.markdown("### Hard Skills 🧠")
+    skills = ["Data Science & AI", "Web Development", "Programming & Tools"]
     programming_languages = [
-        ["Python", "R", "Pandas", "Numpy", "Matplotlib"],
-        ["HTML", "CSS", "JS", "Express Js", "php"],
-        ["Java", "C", "Linux"]
+        ["Python", "Pandas", "Numpy", "Matplotlib", "Scikit-learn", "SHAP", "BERT", "OpenCV"],
+        ["HTML", "CSS", "JS", "Express.js", "PhpMyAdmin", "Pug"],
+        ["Java", "C", "R", "Shell", "SQL", "Linux"]
     ]
 
-    # Corresponding proficiency levels 
+    # Estimation des pourcentages de maîtrise (total de chaque pie = 1.0)
     proficiencies = [
-        [0.6, 0.1, 0.1, 0.1, 0.1],  # Percentages for Machine Learning languages
-        [0.3, 0.3, 0.2,0.1, 0.1],        # Percentages for Web Development languages
-        [0.4, 0.4, 0.2]              # Percentages for Other Programming Skills
+        [0.25, 0.15, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.2, 0.2, 0.2, 0.15, 0.15, 0.1],
+        [0.2, 0.2, 0.15, 0.15, 0.15, 0.15]
     ]
 
-    fig = make_subplots(rows=1, cols=3, specs=[[{'type':'pie'}, {'type':'pie'}, {'type':'pie'}]],
+    fig = make_subplots(rows=1, cols=3, specs=[[{'type':'pie'}]*3],
                         subplot_titles=skills)
 
-    # Pie charts for each skill
     for i, skill in enumerate(skills):
         fig.add_trace(go.Pie(
             labels=programming_languages[i],
             values=proficiencies[i],
             name=skill,
-            hole=0.4, 
+            hole=0.4
         ), row=1, col=i+1)
 
     fig.update_layout(
-        title_text="Hard Skills by Programming Languages",
         showlegend=True,
         template="plotly_white"
     )
 
     st.plotly_chart(fig, use_container_width=True)
 
-
 # time line of my educational background
-def education_timeline():
+def education_timeline1():
     data = {
     "Institution": [
         "EFREI Paris, Villejuif", 
@@ -566,6 +564,50 @@ def education_timeline():
     st.write("\n\n\n### Education 🎓")
     st.plotly_chart(fig, use_container_width=True)
 
+def education_timeline():
+    data = {
+        "Institution": [
+            "EFREI Paris, Villejuif", 
+            "Asia Pacific University, Malaysia", 
+            "Lycée Léonard de Vinci, Levallois-Perret"
+        ],
+        "Description": [
+            "2021-2023: Integrated Prep in Biology & Digital Technology\n2023-2024: 1st year of Engineering Program\n2024-2025: 2nd year specialization in Data Science & Bioinformatics", 
+            "Sept. 2023 - Dec. 2023: Study Semester in Malaysia (4 months)", 
+            "2021: Scientific High School Diploma (with Honors)"
+        ],
+        "Start": ["2021-09-01", "2023-09-01", "2018-09-01"],
+        "End": ["2025-06-01", "2023-12-31", "2021-06-30"]
+    }
+
+    df = pd.DataFrame(data)
+    df["Start"] = pd.to_datetime(df["Start"])
+    df["End"] = pd.to_datetime(df["End"])
+
+    pastel_colors = ["#FFB3BA", "#FFDFBA", "#FFFFBA"]
+
+    fig = px.timeline(
+        df, 
+        x_start="Start", 
+        x_end="End", 
+        y="Institution", 
+        color="Institution", 
+        hover_name="Institution",
+        hover_data={"Description": True, "Start": False, "End": False},
+        title="My Educational Journey",
+        color_discrete_sequence=pastel_colors
+    )
+
+    fig.update_yaxes(categoryorder="total ascending")
+    fig.update_layout(
+        xaxis_title="Dates",
+        yaxis_title="",
+        hoverlabel=dict(bgcolor="white", font_size=12),
+        showlegend=False
+    )
+
+    st.write("### Education 🎓")
+    st.plotly_chart(fig, use_container_width=True)
 
 # pie chart of the distribution of the sports I plaued
 def pie_sports():
@@ -581,7 +623,82 @@ def pie_sports():
 
     st.plotly_chart(fig)
 
+def show_experiences_cards():
+    experiences = [
+        {
+            "title": "🧠 Data Scientist Intern",
+            "company": "Aixial Group / ALTEN",
+            "date": "Nov. 2024 – Apr. 2025",
+            "description": "Signal detection in healthcare regulations using NLP, Multi-source data, Explainable AI."
+        },
+        {
+            "title": "🛍️ Commercial Trainee",
+            "company": "FNAC Ternes",
+            "date": "Dec. 2022 – Jan. 2023",
+            "description": "Customer care and sales in technical product department."
+        },
+        {
+            "title": "🏫 Intern",
+            "company": "Centre Louise Michel",
+            "date": "June 2022",
+            "description": "Sociocultural support and educational projects."
+        },
+        {
+            "title": "💊 Intern",
+            "company": "Pharmacie SO OUEST",
+            "date": "Jan. 2018",
+            "description": "Pharmacy logistics and front-desk experience."
+        }
+    ]
 
+    st.markdown("### Professional Experiences 💼")
+    for exp in experiences:
+        st.markdown(f"""
+        <div style="background-color: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <h4>{exp['title']} – <span style="color:#6c757d;">{exp['company']}</span></h4>
+            <p><i>{exp['date']}</i></p>
+            <p>{exp['description']}</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+
+def soft_skills_display():
+    st.markdown("### Soft Skills 🧠")
+
+    soft_skills = [
+        ("Autonomy", "#FFCDD2"),
+        ("Project Management", "#FFE0B2"),
+        ("Collaboration", "#C8E6C9"),
+        ("Tenacity", "#BBDEFB"),
+        ("Adaptability", "#E1BEE7"),
+        ("Agility", "#FFF9C4"),
+        ("Communication", "#B2EBF2"),
+        ("Curiosity", "#F8BBD0"),
+        ("Critical Thinking", "#D1C4E9")
+    ]
+
+    # Affichage par groupes de 3 soft skills (colonnes)
+    for i in range(0, len(soft_skills), 3):
+        cols = st.columns(3)
+        for col, (skill, color) in zip(cols, soft_skills[i:i+3]):
+            col.markdown(
+                f"""
+                <div style="
+                    background-color: white;
+                    border-left: 10px solid {color};
+                    padding: 20px;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+                    font-weight: 600;
+                    font-size: 16px;
+                    color: #333;
+                    margin-bottom: 10px;
+                ">
+                    {skill}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
 
 
