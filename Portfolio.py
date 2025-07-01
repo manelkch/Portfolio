@@ -1,5 +1,5 @@
 import streamlit as st
-from plots import hard_skills, education_timeline, pie_sports, show_experiences_cards, soft_skills_display
+from plots import hard_skills, education_timeline, pie_sports, show_experiences_cards, soft_skills_display, travel_map
 
 st.set_page_config(layout="wide")
 
@@ -42,44 +42,44 @@ st.sidebar.markdown(
 )
 
 st.markdown("# Welcome to my portfolio! ✨")
+st.markdown("")
 st.write("### Profile")
 st.write(
-    "Curious and passionate about biology 🧬, mathematics 📈 and digital technologies 💻, "
-    "I aim to innovate in healthcare through data science and AI. I'm looking for a 12-month apprenticeship "
-    "in Data Science and/or Bioinformatics starting in September 2025."
+    "##### Curious and passionate about biology 🧬, mathematics 📈 and digital technologies 💻, "
+    "I aim to innovate in healthcare through data science and AI.\n"
+    "##### I'm looking for a 12-month apprenticeship in Data Science and/or Bioinformatics starting in September 2025."
 )
 
-st.write("### Skills")
+st.markdown("")
 
-st.write("#### Programming")
-st.write("- Python, C, Java, Shell, SQL, HTML, CSS, JS, R")
+hard_skills()
 
-st.write("#### Data Science")
-st.write("- Pandas, Matplotlib, Seaborn, Plotly Express")
-st.write("- OpenCV, BeautifulSoup, Streamlit")
-st.write("- NLP, signal/image/text processing")
-
-st.write("#### Office & Tools")
+st.write("#### Office")
 st.write("- Microsoft Office (Excel, Word, Teams...)")
 
+st.markdown("")
 
 st.write("#### Languages")
 st.write("- **English** : B2 (TOEIC 895/990)")
 st.write("- **Spanish** : A1")
 
-
-hard_skills()
+st.markdown("")
 
 soft_skills_display()
+
+st.markdown("")
 
 education_timeline()
 
 show_experiences_cards()
 
+st.markdown("")
+
 st.write("### Interests")
 
 st.write("#### Travel ✈️")
 st.write("Malaysia, Singapore, Thailand, Morocco, Spain, Italy, Belgium, United Kingdom")
+travel_map()
 
 st.write("#### Sport 🏋️")
 pie_sports()

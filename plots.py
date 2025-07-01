@@ -487,8 +487,8 @@ def hard_skills():
     st.markdown("### Hard Skills 🧠")
     skills = ["Data Science & AI", "Web Development", "Programming & Tools"]
     programming_languages = [
-        ["Python", "Pandas", "Numpy", "Matplotlib", "Scikit-learn", "SHAP", "BERT", "OpenCV"],
-        ["HTML", "CSS", "JS", "Express.js", "PhpMyAdmin", "Pug"],
+        ["Python", "Pandas", "Numpy", "Matplotlib", "Scikit-learn", "SHAP", "BERT", "OpenCV", "Seaborn", "Plotly Express", "BeautifulSoup"],
+        ["HTML", "CSS", "JS", "Express.js", "PhpMyAdmin", "Pug", "Streamlit"],
         ["Java", "C", "R", "Shell", "SQL", "Linux"]
     ]
 
@@ -519,52 +519,6 @@ def hard_skills():
 
 # time line of my educational background
 def education_timeline1():
-    data = {
-    "Institution": [
-        "EFREI Paris, Villejuif", 
-        "Asia Pacific University, Malaysia", 
-        "Lycée Léonard de Vinci, Levallois-Perret"
-    ],
-    "Description": [
-        "2021-2023: Integrated Prep in Biology & Digital Technology (2 years)\n2023-2024: 1st year of Engineering Program", 
-        "Sept. 2023 - Dec. 2023: Study Semester in Malaysia (4 months)", 
-        "2021: Scientific High School Diploma (with Honors)"
-    ],
-    "Start": ["2021-09-01", "2023-09-01", "2018-09-01"],
-    "End": ["2024-06-01", "2023-12-31", "2021-06-30"]
-    }
-
-    df = pd.DataFrame(data)
-    df["Start"] = pd.to_datetime(df["Start"])
-    df["End"] = pd.to_datetime(df["End"])
-
-    pastel_colors = ["#FFB3BA", "#FFDFBA", "#FFFFBA"]
-
-    # Create the timeline figure with pastel colors
-    fig = px.timeline(
-        df, 
-        x_start="Start", 
-        x_end="End", 
-        y="Institution", 
-        color="Institution", 
-        hover_name="Institution",
-        hover_data={"Description": True, "Start": False, "End": False},
-        title="My Educational Journey",
-        color_discrete_sequence=pastel_colors  # Set pastel colors
-    )
-
-    fig.update_yaxes(categoryorder="total ascending")
-    fig.update_layout(
-        xaxis_title="Dates",
-        yaxis_title="",
-        hoverlabel=dict(bgcolor="white", font_size=12),
-        showlegend=False
-    )
-
-    st.write("\n\n\n### Education 🎓")
-    st.plotly_chart(fig, use_container_width=True)
-
-def education_timeline():
     data = {
         "Institution": [
             "EFREI Paris, Villejuif", 
@@ -609,6 +563,57 @@ def education_timeline():
     st.write("### Education 🎓")
     st.plotly_chart(fig, use_container_width=True)
 
+def education_timeline():
+    data = {
+        "Institution": [
+            "<b>EFREI Paris, Villejuif</b>", 
+            "<b>Asia Pacific University, Malaysia</b>", 
+            "<b>Lycée Léonard de Vinci, Levallois-Perret</b>"
+        ],
+        "Description": [
+            "2021-2023: Integrated Prep in Biology & Digital Technology\n2023-2024: 1st year of Engineering Program\n2024-2025: 2nd year specialization in Data Science & Bioinformatics", 
+            "Sept. 2023 - Dec. 2023: Study Semester in Malaysia (4 months)", 
+            "2021: Scientific High School Diploma (with Honors)"
+        ],
+        "Start": ["2021-09-01", "2023-09-01", "2018-09-01"],
+        "End": ["2025-06-01", "2023-12-31", "2021-06-30"]
+    }
+
+    df = pd.DataFrame(data)
+    df["Start"] = pd.to_datetime(df["Start"])
+    df["End"] = pd.to_datetime(df["End"])
+
+    pastel_colors = ["#FFB3BA", "#FFDFBA", "#FFFFBA"]
+
+    fig = px.timeline(
+        df, 
+        x_start="Start", 
+        x_end="End", 
+        y="Institution", 
+        color="Institution", 
+        hover_name="Institution",
+        hover_data={"Description": True, "Start": False, "End": False},
+        color_discrete_sequence=pastel_colors
+    )
+
+    fig.update_yaxes(categoryorder="total ascending")
+    fig.update_layout(
+        xaxis_title="",
+        yaxis_title="",
+        hoverlabel=dict(bgcolor="white", font_size=18),
+        font=dict(size=16),  # Taille globale du texte
+        showlegend=False,
+        yaxis=dict(
+        tickfont=dict(size=18),  # augmente la taille du texte sur l’axe Y
+        ),
+        xaxis=dict(
+        tickfont=dict(size=18),  # augmente la taille du texte sur l’axe Y
+    ),
+    )
+
+    st.markdown("### **Education** 🎓")
+    st.plotly_chart(fig, use_container_width=True)
+
 # pie chart of the distribution of the sports I plaued
 def pie_sports():
     data = {
@@ -618,7 +623,7 @@ def pie_sports():
     df = pd.DataFrame(data)
 
     # Créer le graphique en camembert avec une palette de couleurs correcte
-    fig = px.pie(df, names='Sports', values='Years', title='Visualization of the sports I have played',
+    fig = px.pie(df, names='Sports', values='Years', title='The sports I have practiced',
                 color_discrete_sequence=px.colors.diverging.RdYlGn)
 
     st.plotly_chart(fig)
@@ -701,7 +706,52 @@ def soft_skills_display():
             )
 
 
+def travel_map():
+    data = {
+        "Country": [
+            "Malaysia", "Singapore", "Thailand", 
+            "Morocco", "Spain", "Italy", 
+            "Belgium", "United Kingdom"
+        ],
+        "City": [
+            "Kuala Lumpur", "Singapore", "Bangkok", 
+            "Casablanca", "Barcelona", "Rome", 
+            "Brussels", "London"
+        ],
+        "lat": [3.1390, 1.3521, 13.7563, 33.5731, 41.3851, 41.9028, 50.8503, 51.5074],
+        "lon": [101.6869, 103.8198, 100.5018, -7.5898, 2.1734, 12.4964, 4.3517, -0.1278]
+    }
 
+    df = pd.DataFrame(data)
+
+    fig = px.scatter_geo(
+        df,
+        lat="lat",
+        lon="lon",
+        text="City",
+        hover_name="Country",
+        projection="natural earth"
+    )
+
+    fig.update_traces(
+        marker=dict(size=12, color="purple", line=dict(width=1, color="black"))
+    )
+
+    fig.update_layout(
+        geo=dict(
+            showland=True,
+            landcolor="#eaffea",
+            showcountries=True,
+            fitbounds="locations",
+            showocean=True,             
+            oceancolor="#E0F7FA",   
+            resolution=50
+        ),
+        margin=dict(l=0, r=0, t=30, b=0),
+        height=600 
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
 
 
 
