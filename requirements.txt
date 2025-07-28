@@ -10,3 +10,4 @@ bokeh
 nbformat
 streamlit-option-menu
 wfdb
+pywt
