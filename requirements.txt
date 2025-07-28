@@ -12,7 +12,7 @@ Pillow
 shap
 streamlit-shap
 wfdb
-pywt
+PyWavelets
 scipy
 neurokit2
 tensorflow
