@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: Portfolio
+    env: python
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run Portfolio.py
+    pythonVersion: "3.10"
+    plan: starter
+    envVars:
+      - key: PORT
+        value: "10000"
