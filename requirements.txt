@@ -9,3 +9,4 @@ geopandas
 bokeh
 nbformat
 streamlit-option-menu
+wfdb
