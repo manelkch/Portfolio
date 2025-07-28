@@ -68,5 +68,5 @@ jobs:
         with:
           app-name: 'manelkch-portfolio'
           slot-name: 'Production'
-          package: .
+          package: '.'
           
