@@ -3,6 +3,10 @@ from plots import hard_skills, education_timeline, pie_sports, show_experiences_
 
 st.set_page_config(layout="wide")
 
+
+if "page" not in st.session_state:
+    st.session_state.page = ""
+
 st.markdown(
     """
     <style>
@@ -43,12 +47,23 @@ st.sidebar.markdown(
 
 st.markdown("# Welcome to my portfolio! ✨")
 st.markdown("")
-st.write("### Profile")
-st.write(
-    "##### Curious and passionate about biology 🧬, mathematics 📈 and digital technologies 💻, "
-    "I aim to innovate in healthcare through data science and AI.\n"
-    "##### I'm looking for a 12-month apprenticeship in Data Science and/or Bioinformatics starting in September 2025."
-)
+
+st.markdown("""
+    <div style="background-color:#f0f4fa;padding:20px;border-radius:12px;margin-bottom:20px; box-shadow: 1px 5px 5px #42237a;">
+        <h3 style="color:black;"> Profile </h3>
+        <p>
+            Curious and passionate about <b>biology 🧬</b>, <b>mathematics 📈</b>, <b>data science 💻</b> and <b>Artificial Intelligence</b>. I aim to innovate in <b>healthcare</b> through <b>data science and AI</b>. 
+        </p>
+        <p>
+            I aim to innovate in <b>healthcare</b> through <b>data science and AI</b>. I am looking for a <b>12-month apprenticeship</b> in <b>Data Science and/or Bioinformatics</b>, for my <b>last year of engineering studies</b>, starting in <b>September 2025</b>.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+st.markdown("")
+
+show_experiences_cards()
 
 st.markdown("")
 
@@ -70,8 +85,6 @@ soft_skills_display()
 st.markdown("")
 
 education_timeline()
-
-show_experiences_cards()
 
 st.markdown("")
 

@@ -518,51 +518,6 @@ def hard_skills():
     st.plotly_chart(fig, use_container_width=True)
 
 # time line of my educational background
-def education_timeline1():
-    data = {
-        "Institution": [
-            "EFREI Paris, Villejuif", 
-            "Asia Pacific University, Malaysia", 
-            "Lycée Léonard de Vinci, Levallois-Perret"
-        ],
-        "Description": [
-            "2021-2023: Integrated Prep in Biology & Digital Technology\n2023-2024: 1st year of Engineering Program\n2024-2025: 2nd year specialization in Data Science & Bioinformatics", 
-            "Sept. 2023 - Dec. 2023: Study Semester in Malaysia (4 months)", 
-            "2021: Scientific High School Diploma (with Honors)"
-        ],
-        "Start": ["2021-09-01", "2023-09-01", "2018-09-01"],
-        "End": ["2025-06-01", "2023-12-31", "2021-06-30"]
-    }
-
-    df = pd.DataFrame(data)
-    df["Start"] = pd.to_datetime(df["Start"])
-    df["End"] = pd.to_datetime(df["End"])
-
-    pastel_colors = ["#FFB3BA", "#FFDFBA", "#FFFFBA"]
-
-    fig = px.timeline(
-        df, 
-        x_start="Start", 
-        x_end="End", 
-        y="Institution", 
-        color="Institution", 
-        hover_name="Institution",
-        hover_data={"Description": True, "Start": False, "End": False},
-        title="My Educational Journey",
-        color_discrete_sequence=pastel_colors
-    )
-
-    fig.update_yaxes(categoryorder="total ascending")
-    fig.update_layout(
-        xaxis_title="Dates",
-        yaxis_title="",
-        hoverlabel=dict(bgcolor="white", font_size=12),
-        showlegend=False
-    )
-
-    st.write("### Education 🎓")
-    st.plotly_chart(fig, use_container_width=True)
-
 def education_timeline():
     data = {
         "Institution": [
@@ -573,10 +528,10 @@ def education_timeline():
         "Description": [
             "2021-2023: Integrated Prep in Biology & Digital Technology\n2023-2024: 1st year of Engineering Program\n2024-2025: 2nd year specialization in Data Science & Bioinformatics", 
             "Sept. 2023 - Dec. 2023: Study Semester in Malaysia (4 months)", 
-            "2021: Scientific High School Diploma (with Honors)"
+            "2018-2021: Scientific High School Diploma (with Honors)"
         ],
         "Start": ["2021-09-01", "2023-09-01", "2018-09-01"],
-        "End": ["2025-06-01", "2023-12-31", "2021-06-30"]
+        "End": ["2026-06-01", "2023-12-31", "2021-06-30"]
     }
 
     df = pd.DataFrame(data)
@@ -600,14 +555,14 @@ def education_timeline():
     fig.update_layout(
         xaxis_title="",
         yaxis_title="",
-        hoverlabel=dict(bgcolor="white", font_size=18),
+        hoverlabel=dict(bgcolor="white", font_size=12),
         font=dict(size=16),  # Taille globale du texte
         showlegend=False,
         yaxis=dict(
-        tickfont=dict(size=18),  # augmente la taille du texte sur l’axe Y
+        tickfont=dict(size=14),  # augmente la taille du texte sur l’axe Y
         ),
         xaxis=dict(
-        tickfont=dict(size=18),  # augmente la taille du texte sur l’axe Y
+        tickfont=dict(size=16),  # augmente la taille du texte sur l’axe Y
     ),
     )
 
