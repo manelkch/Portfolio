@@ -8,11 +8,15 @@ def article_method():
     import matplotlib.pyplot as plt
     from tensorflow.keras.models import load_model  
 
-    MODEL_PATH = 'model/shallow_cnn.h5' 
-    DATA_DIR = 'data'
+    BASE_DIR = os.path.dirname(__file__)   # where detection_methods.py lives
+    MODEL_DIR = os.path.join(BASE_DIR, "model")
+    DATA_DIR = os.path.join(BASE_DIR, "data")
+
+    MODEL_PATH = os.path.join(MODEL_DIR, "shallow_cnn.h5")
+    HISTORY_PATH = os.path.join(MODEL_DIR, "training_history.json")
+    METRICS_PATH = os.path.join(MODEL_DIR, "final_metrics.json")
+    
     WINDOW_SIZE = 200
-    HISTORY_PATH = 'model/training_history.json'
-    METRICS_PATH = 'model/final_metrics.json'
     CHANNELS = {'MLII': 0, 'V5': 1}
 
     @st.cache_resource
