@@ -4,21 +4,20 @@ def article_method():
     import os
     import numpy as np
     import wfdb
-    import pickle
     import json
     import matplotlib.pyplot as plt
+    from tensorflow.keras.models import load_model  
 
-    MODEL_PATH = 'ecg/model/shallow_cnn.pkl'
-    DATA_DIR = 'ecg/data'
+    MODEL_PATH = 'model/shallow_cnn.h5' 
+    DATA_DIR = 'data'
     WINDOW_SIZE = 200
-    HISTORY_PATH = 'ecg/model/training_history.json'
-    METRICS_PATH = 'ecg/model/final_metrics.json'
+    HISTORY_PATH = 'model/training_history.json'
+    METRICS_PATH = 'model/final_metrics.json'
     CHANNELS = {'MLII': 0, 'V5': 1}
 
     @st.cache_resource
     def load_trained_model():
-        with open(MODEL_PATH, 'rb') as f:
-            model = pickle.load(f)
+        model = load_model(MODEL_PATH)
         return model
 
     @st.cache_resource
@@ -51,7 +50,6 @@ def article_method():
 
         beats = np.array(beats)[..., np.newaxis]
         return beats, positions, ecg_signal, annotation.symbol
-
 
     def show_training_info():
         with st.container():
@@ -114,12 +112,12 @@ def article_method():
             ax.set_facecolor("none")
             ax.plot(full_signal, label="ECG Signal", alpha=0.6)
 
-            # Lignes selon prédictions du modèle
+            # Predictions overlay
             for pos, pred in zip(positions, binary_preds):
                 color = 'red' if pred == 1 else 'green'
                 ax.axvline(pos, color=color, linestyle='--', alpha=0.5)
 
-            # Lignes pour vérité terrain anormale
+            # Ground truth abnormal beats
             for pos, label in zip(positions, labels):
                 if label in ['L', 'R', 'A', 'V']:
                     ax.axvline(pos, color='orange', linestyle=':', linewidth=1.5, alpha=0.6)
@@ -129,7 +127,7 @@ def article_method():
             ax.set_ylabel("Amplitude")
             st.pyplot(fig)
 
-            # Comptage vrai / faux
+            # Beat statistics
             true_anormal = sum(1 for l in labels if l in ['L', 'R', 'A', 'V'])
             st.success(f"""
             - Total beats analysed: **{len(binary_preds)}**
@@ -137,7 +135,6 @@ def article_method():
             - True abnormal beats (from annotation): **{true_anormal}**
             """)
 
-    
     main()
 
 
