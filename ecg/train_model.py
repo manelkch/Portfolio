@@ -1,7 +1,6 @@
 import os
 import numpy as np
 import wfdb
-import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.models import Sequential
@@ -12,10 +11,9 @@ import json
 
 HISTORY_PATH = 'model/training_history.json'
 METRICS_PATH = 'model/final_metrics.json'
-
+MODEL_PATH = 'model/shallow_cnn.h5'  # use .h5 instead of pickle
 
 DATA_DIR = 'data'
-MODEL_PATH = 'model/shallow_cnn.pkl'
 WINDOW_SIZE = 200  # number of samples per beat
 
 def load_ecg_data():
@@ -33,7 +31,7 @@ def load_ecg_data():
 
             for i, sample in enumerate(annotation.sample):
                 label = annotation.symbol[i]
-                if label not in ['N', 'L', 'R', 'A', 'V']:  # N=normal; others abnormal
+                if label not in ['N', 'L', 'R', 'A', 'V']:  # N=normal, others abnormal
                     continue
 
                 start = sample - WINDOW_SIZE // 2
@@ -63,27 +61,19 @@ def build_model(input_shape):
     return model
 
 def main():
-    #print("Loading ECG data...")
     X, y = load_ecg_data()
-    #print(f"Loaded {len(X)} samples")
-
+ 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
     X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=42)
 
-    #print("Building model...")
     model = build_model(X.shape[1:])
 
-    #print("Training model...")
     history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=20, batch_size=64)
 
-    #print("Evaluating model...")
     loss, acc = model.evaluate(X_test, y_test)
-    #print(f"Test accuracy: {acc:.4f}")
 
-    #print(f"Saving model to {MODEL_PATH}...")
     os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
-    with open(MODEL_PATH, 'wb') as f:
-        pickle.dump(model, f)
+    model.save(MODEL_PATH)  # <-- save properly in h5 format
 
     # Save training history
     with open(HISTORY_PATH, 'w') as f:
