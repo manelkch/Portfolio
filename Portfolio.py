@@ -52,7 +52,7 @@ st.markdown("""
     <div style="background-color:#f0f4fa;padding:20px;border-radius:12px;margin-bottom:20px; box-shadow: 1px 5px 5px #42237a;">
         <h3 style="color:black;"> Profile </h3>
         <p>
-            Curious and passionate about <b>biology 🧬</b>, <b>mathematics 📈</b>, <b>data science 💻</b> and <b>Artificial Intelligence</b>. I aim to innovate in <b>healthcare</b> through <b>data science and AI</b>. 
+            Curious and passionate about <b>biology 🧬</b>, <b>mathematics 📈</b>, <b>data science 💻</b> and <b>Artificial Intelligence</b>.
         </p>
         <p>
             I aim to innovate in <b>healthcare</b> through <b>data science and AI</b>. I am looking for a <b>12-month apprenticeship</b> in <b>Data Science and/or Bioinformatics</b>, for my <b>last year of engineering studies</b>, starting in <b>September 2025</b>.
