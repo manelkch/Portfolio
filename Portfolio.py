@@ -55,7 +55,7 @@ st.markdown("""
             Curious and passionate about <b>biology 🧬</b>, <b>mathematics 📈</b>, <b>data science 💻</b> and <b>Artificial Intelligence</b>.
         </p>
         <p>
-            I aim to innovate in <b>healthcare</b> through <b>data science and AI</b>. I am looking for a <b>12-month apprenticeship</b> in <b>Data Science and/or Bioinformatics</b>, for my <b>last year of engineering studies</b>, starting in <b>September 2025</b>.
+            I aim to innovate in <b>healthcare</b> through <b>data science and AI</b>. I am looking for a <b>end-of-studies internship (6 months)</b> in <b>Data Science and/or Bioinformatics</b>, for my <b>last year of engineering studies</b>, starting in <b>March 2026</b>.
         </p>
     </div>
     """, unsafe_allow_html=True)
